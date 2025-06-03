@@ -107,12 +107,12 @@ body {
 }
 
 .todos__single {
-  margin-bottom: 16px;
-  border-radius: 12px;
-  overflow: hidden;
-  background-color: rgba(30, 30, 32, 0.9);
-  padding: 4px;
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
+  display: flex;
+  border-radius: 5px;
+  padding: 20px;
+  margin-top: 15px;
+  background-image: url("https://img.freepik.com/free-photo/crumpled-yellow-paper-background-close-up_60487-2390.jpg?size=626&ext=jpg");
+  transition: 0.2s;
 }
 
 .todos__single__inner {
