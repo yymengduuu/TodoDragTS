@@ -90,6 +90,8 @@ body {
 }
 
 .todos {
+  display: flex;
+  flex-direction: column;
   background-color: var(--surface);
   padding: 20px;
   border-radius: var(--border-radius);
@@ -105,14 +107,27 @@ body {
 }
 
 .todos__single {
-  background-color: #2e2e31;
-  border-radius: var(--border-radius);
-  padding: 16px;
+  margin-bottom: 16px;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: rgba(30, 30, 32, 0.9);
+  padding: 4px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
+}
+
+.todos__single__inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 12px;
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  padding: 16px 20px;
+  margin-top: 15px;
+  border-radius: 12px;
+  color: white;
+  transition: transform 0.2s ease;
+}
+
+.todos__single:hover .todos__single__inner {
+  transform: scale(1.01);
 }
 
 .todos__single:hover {
