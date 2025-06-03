@@ -9,18 +9,20 @@ const App: React.FC = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
 
   const colorPalette = [
-    "#7c3aed", // purple
-    "#6d28d9", // deeper purple
-    "#3b82f6", // blue
-    "#0ea5e9", // cyan
-    "#9333ea", // violet
-    "#6366f1", // indigo
-    "#8b5cf6", // light purple
-    "#3f3f46", // dark surface
+    "#7c3aed",
+    "#6d28d9",
+    "#3b82f6",
+    "#0ea5e9",
+    "#9333ea",
+    "#6366f1",
+    "#8b5cf6",
+    "#3f3f46",
   ];
+
   const getRandomColor = () => {
     return colorPalette[Math.floor(Math.random() * colorPalette.length)];
   };
+
   const handleAdd = (e: React.FormEvent) => {
     e.preventDefault();
     if (task) {
