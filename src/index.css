@@ -102,11 +102,11 @@ body {
 }
 
 .dragactive {
-  background-color: #5b21b6;
+  background-color: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
 }
 
 .dragcomplete {
-  background-color: rgb(255, 38, 0);
+  background-color: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
 }
 
 .todos__heading {
