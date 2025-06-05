@@ -43,7 +43,9 @@ export default function TodoList({
       <Droppable droppableId="TodosRemove">
         {(provided, snapshot) => (
           <div
-            className="todos"
+            className={`todos  ${
+              snapshot.isDraggingOver ? "dragcomplete" : "remove"
+            }`}
             ref={provided.innerRef}
             {...provided.droppableProps}
           >
