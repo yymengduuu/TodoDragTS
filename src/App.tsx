@@ -19,7 +19,6 @@ const App: React.FC = () => {
     "#9333ea",
     "#6366f1",
     "#8b5cf6",
-    "#3f3f46",
   ];
 
   const getRandomColor = () => {
