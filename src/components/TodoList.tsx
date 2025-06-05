@@ -41,7 +41,7 @@ export default function TodoList({
       </Droppable>
 
       <Droppable droppableId="TodosRemove">
-        {(provided) => (
+        {(provided, snapshot) => (
           <div
             className="todos"
             ref={provided.innerRef}
