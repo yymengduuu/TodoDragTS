@@ -2,18 +2,21 @@ import React, { useState, useRef, useEffect } from "react";
 import type { Task } from "../model.ts";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import { MdDone } from "react-icons/md";
+import { Draggable } from "@hello-pangea/dnd";
 
 interface Props {
+  index: number;
   task: Task;
   tasks: Task[];
   setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
 }
 
-export default function SingleTask({ task, tasks, setTasks }: Props) {
+export default function SingleTask({ index, task, tasks, setTasks }: Props) {
   const [edit, setEdit] = useState<boolean>(false);
   const [editTask, setEditTask] = useState<string>(task.task);
 
   const inputRef = useRef<HTMLInputElement>(null);
+
   useEffect(() => {
     inputRef.current?.focus(); // Focus the input when edit mode is enabled
   }, [edit]);
@@ -40,47 +43,54 @@ export default function SingleTask({ task, tasks, setTasks }: Props) {
   };
 
   return (
-    <form
-      className="todos-single"
-      style={{ backgroundColor: task.color, color: "#fff" }}
-      onSubmit={(e) => handleEdit(e, task.id)}
-    >
-      <div
-        className="todos__single__inner"
-        style={{ backgroundColor: task.color }}
-      >
-        {edit ? (
-          <input
-            className="todos__single--text"
-            value={editTask}
-            ref={inputRef}
-            onChange={(e) => setEditTask(e.target.value)}
-          />
-        ) : task.isDone ? (
-          <s className="todos-single-text">{task.task}</s>
-        ) : (
-          <span className="todos-single-text">{task.task}</span>
-        )}
-
-        <div>
-          <span
-            className="icon"
-            onClick={() => {
-              if (!edit && !task.isDone) {
-                setEdit(!edit);
-              }
-            }}
+    <Draggable draggableId={task.id.toString()} index={index}>
+      {(provided) => (
+        <form
+          className="todos-single"
+          style={{ backgroundColor: task.color, color: "#fff" }}
+          onSubmit={(e) => handleEdit(e, task.id)}
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}
+          ref={provided.innerRef}
+        >
+          <div
+            className="todos__single__inner"
+            style={{ backgroundColor: task.color }}
           >
-            {<AiFillEdit />}
-          </span>
-          <span className="icon" onClick={() => handleDelete()}>
-            {<AiFillDelete />}
-          </span>
-          <span className="icon" onClick={() => handleDone()}>
-            {<MdDone />}
-          </span>
-        </div>
-      </div>
-    </form>
+            {edit ? (
+              <input
+                className="todos__single--text"
+                value={editTask}
+                ref={inputRef}
+                onChange={(e) => setEditTask(e.target.value)}
+              />
+            ) : task.isDone ? (
+              <s className="todos-single-text">{task.task}</s>
+            ) : (
+              <span className="todos-single-text">{task.task}</span>
+            )}
+
+            <div>
+              <span
+                className="icon"
+                onClick={() => {
+                  if (!edit && !task.isDone) {
+                    setEdit(!edit);
+                  }
+                }}
+              >
+                {<AiFillEdit />}
+              </span>
+              <span className="icon" onClick={() => handleDelete()}>
+                {<AiFillDelete />}
+              </span>
+              <span className="icon" onClick={() => handleDone()}>
+                {<MdDone />}
+              </span>
+            </div>
+          </div>
+        </form>
+      )}
+    </Draggable>
   );
 }
